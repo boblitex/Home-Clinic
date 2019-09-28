@@ -1,0 +1,25 @@
+.nav-bar{
+    background-color: #043770;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 7vh;
+}
+ul>li{
+    list-style: none;
+    font-size: 24px;
+    margin: 0 2rem;
+
+}
+
+
+ul>li>a{
+    text-decoration: none;
+    color: white;
+}
+ul>li>a:hover{
+    color: #fcd4f5;
+}
+.right-menu{
+    margin-left: auto;
+}
