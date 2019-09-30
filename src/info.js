@@ -2,7 +2,7 @@ import React from 'react';
 
 const Info =()=>{
     return (
-      <div className="bg-white-30 br3">
+      <div className="bg-white-60 br3">
         <p className="f1 center pa3 orange sans-serif">
           Sick? Skip the clinic queue! <br />
           Register now to book an appointment
