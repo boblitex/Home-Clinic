@@ -4,11 +4,11 @@ import "./Register.css";
 const Register = () => {
   return (
     <div className= "framee pa3 br3">        
-          <form action="sign-up_submit" method="post" accept-charset="utf-8">
+          <form action="sign-up_submit" method="post" acceptCharset="utf-8">
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               <legend className="ph0 mh0 fw6 clip">Register</legend>
               <div className="mt3">
-                <label className="db fw4 lh-copy f6" htmlFor="text">
+                <label className="db b lh-copy f6 " htmlFor="text">
                   Name
                 </label>
                 <input
@@ -19,7 +19,7 @@ const Register = () => {
                 />
               </div>
               <div className="mt3">
-                <label className="db fw4 lh-copy f6" htmlFor="Number">
+                <label className="db b lh-copy f6 b" htmlFor="Number">
                   ID Number
                 </label>
                 <input
@@ -30,7 +30,7 @@ const Register = () => {
                 />
               </div>              
               <div className="mt3">
-                <label className="db fw4 lh-copy f6" htmlFor="email-address">
+                <label className="db b lh-copy f6 b" htmlFor="email-address">
                   Email address
                 </label>
                 <input
@@ -41,7 +41,7 @@ const Register = () => {
                 />
               </div>
               <div className="mt3">
-                <label className="db fw4 lh-copy f6" htmlFor="password">
+                <label className="db b lh-copy f6 b" htmlFor="password">
                   Password
                 </label>
                 <input
@@ -63,7 +63,7 @@ const Register = () => {
             <p className="f6 link dim black db">
               Already have an account?
             </p>
-            <a href="#0" className="f6 link dim black db">
+            <a href="#0" className="f6 link dim black db b underline-hover">
               Sign in
             </a>
           </div>

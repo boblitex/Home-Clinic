@@ -5,21 +5,26 @@
     align-items: center;
     height: 7vh;
 }
-ul>li{
-    list-style: none;
-    font-size: 22px;
-    margin: 0 2rem;
 
-}
-
-
-ul>li>a{
+.navlink{
     text-decoration: none;
     color: white;
 }
-ul>li>a:hover{
-    color: #a9b7dd;
+.navlink li{
+    list-style: none;
+    font-size: 22px;
+    margin: 0 2rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 22px;
 }
+.navlink li:hover{
+    background-color: #9ACDE0;
+    cursor: pointer;
+}
+
+
 .right-menu{
     margin-left: auto;
 }

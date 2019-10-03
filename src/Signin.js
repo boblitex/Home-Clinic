@@ -1,5 +1,5 @@
 import React from "react";
-import './input.css'
+import "./input.css";
 
 const Signin = () => {
   return (
@@ -37,14 +37,6 @@ const Signin = () => {
               type="submit"
               value="Sign in"
             />
-          </div>
-          <div className="lh-copy mt3">
-            <a href="#0" className="f6 link dim black db">
-              Register
-            </a>
-            <a href="#0" className="f6 link dim black db">
-              Forgot your password?
-            </a>
           </div>
         </form>
       </main>
