@@ -1,7 +1,92 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./input.css";
+import { useToast, Button } from "@chakra-ui/core";
+import { Route, Redirect } from "react-router-dom";
 
 const Signin = () => {
+  const toast = useToast();
+  const [isLoading, setisLoading] = useState(false);
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+    error: "",
+    proceed: false
+  });
+
+  const handleChange = name => event => {
+    setValues({ ...values, [name]: event.target.value });
+  };
+
+  useEffect(() => {}, [isLoading]);
+
+  const signInUser = async users => {
+    try {
+      let response = await fetch("http://localhost:8080/api/signin", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(users)
+      });
+      let status = await response.json();
+      if (await status.error) {
+        setValues({ ...values, error: status.error });
+        toast({
+          title: "An error occurred.",
+          description: status.error,
+          status: "error",
+          duration: 5000,
+          isClosable: true
+        });
+        setisLoading(
+          (Button.defaultProps = {
+            isLoading: false
+          })
+        );
+      } else if (await status.success) {
+        setValues({
+          ...values,
+          email: "",
+          password: "",
+          error: "",
+          proceed: true
+        });
+        toast({
+          title: "Sign in successful",
+          description: `Book your appointment now`,
+          status: "success",
+          duration: 10000,
+          isClosable: true
+        });
+        setisLoading(
+          (Button.defaultProps = {
+            isLoading: false
+          })
+        );
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const { email, password, proceed } = values;
+
+  const onSignIn = () => {
+    setisLoading(
+      (Button.defaultProps = {
+        isLoading: true
+      })
+    );
+    signInUser({ email, password });
+  };
+  const handleFocus = () => {
+    setisLoading(
+      (Button.defaultProps = {
+        isLoading: false
+      })
+    );
+  };
+
   return (
     <article className=" frame br3 ba border-blue b--black-10 mv4 w-100 w-50-m w-25-l mw8 shadow-6 center">
       <main className="pa4 black-80">
@@ -13,10 +98,13 @@ const Signin = () => {
                 Email
               </label>
               <input
+                onChange={handleChange("email")}
+                onFocus={handleFocus}
                 className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                 type="email"
                 name="email-address"
                 id="email-address"
+                value={email}
               />
             </div>
             <div className="mv3">
@@ -24,19 +112,25 @@ const Signin = () => {
                 Password
               </label>
               <input
+                onChange={handleChange("password")}
+                onFocus={handleFocus}
                 className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                 type="password"
                 name="password"
                 id="password"
+                value={password}
               />
             </div>
           </fieldset>
           <div className="">
-            <input
-              className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
-              type="submit"
-              value="Sign in"
-            />
+            <Button
+              onClick={onSignIn}
+              loadingText="Submitting"
+              variantColor="black"
+              variant="outline"
+            >
+              Sign In
+            </Button>
           </div>
         </form>
       </main>

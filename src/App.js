@@ -1,14 +1,17 @@
 import React from "react";
 import Navbar from "./Nav";
 import Signin from "./Signin";
-import Info from "./info";
+import Info from "./Info";
 import Register from "./Register";
 import "./App.css";
-import {Route, Switch} from 'react-router-dom'
+import { Route, Switch } from "react-router-dom";
+import {ThemeProvider, CSSReset} from "@chakra-ui/core";
 
 function App() {
   return (
-    <div>
+    <ThemeProvider>
+      <CSSReset/>
+      <div>
       <Navbar />
       <div className="home-body pa5">
         <Info />
@@ -18,6 +21,8 @@ function App() {
         </Switch>
       </div>
     </div>
+    </ThemeProvider>
+    
   );
 }
 
