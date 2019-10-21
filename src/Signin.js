@@ -1,11 +1,11 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./input.css";
 import { useToast, Button } from "@chakra-ui/core";
-import {withRouter, Redirect} from 'react-router-dom';
+import { withRouter, Redirect } from "react-router-dom";
 
 const Signin = () => {
   const toast = useToast();
-  const [ isLoading, setisLoading] = useState(false);
+  const [isLoading, setisLoading] = useState(false);
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -18,6 +18,8 @@ const Signin = () => {
   };
 
   useEffect(() => {}, [isLoading]);
+
+  
 
   const signInUser = async users => {
     try {
@@ -45,25 +47,27 @@ const Signin = () => {
           })
         );
       } else if (await status.success) {
-        setValues({
-          ...values,
-          email: "",
-          password: "",
-          error: "",
-          proceed: true
+        authenticate(status, () => {
+          setValues({
+            ...values,
+            email: "",
+            password: "",
+            error: "",
+            proceed: true
+          });
+          toast({
+            title: "Sign in successful",
+            description: `Book your appointment now`,
+            status: "success",
+            duration: 5000,
+            isClosable: true
+          });
+          setisLoading(
+            (Button.defaultProps = {
+              isLoading: false
+            })
+          );
         });
-        toast({
-          title: "Sign in successful",
-          description: `Book your appointment now`,
-          status: "success",
-          duration: 5000,
-          isClosable: true
-        });
-        setisLoading(
-          (Button.defaultProps = {
-            isLoading: false
-          })
-        );
       }
     } catch (error) {
       console.error(error);
@@ -86,11 +90,17 @@ const Signin = () => {
       })
     );
   };
-  const redirect = ()=>{
-    if (proceed){
-      return <Redirect to = "/dashboard"/>
+  const redirect = () => {
+    if (proceed) {
+      return <Redirect to="/dashboard" />;
     }
-  }
+  };
+  const authenticate = (data, cb) => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("jwt", JSON.stringify(data));
+      cb();
+    }
+  };
 
   return (
     <article className=" frame br3 ba border-blue b--black-10 mv4 w-100 w-50-m w-25-l mw8 shadow-6 center">
@@ -141,7 +151,6 @@ const Signin = () => {
       </main>
       {redirect()}
     </article>
-  
   );
 };
 

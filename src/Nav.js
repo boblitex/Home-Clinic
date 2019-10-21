@@ -3,6 +3,13 @@ import "./Nav.css";
 import { Link } from "react-router-dom";
 
 function Navbar({nav, navv, navvv}) {
+
+  const signout = ()=>{
+    if(window.localStorage){
+      localStorage.removeItem('jwt');
+      localStorage.clear();
+    }
+  }
   return (
     <div>
       <nav>
@@ -10,7 +17,9 @@ function Navbar({nav, navv, navvv}) {
           <Link className="navlink" to="/">
             <li>{nav}</li>
           </Link>          
-          <Link className="navlink right-menu" to="/signin">
+          <Link 
+          onClick = {signout}
+          className="navlink right-menu" to="/signin">
             <li>{navv}</li>
           </Link>
           <Link className="navlink" to="/register">

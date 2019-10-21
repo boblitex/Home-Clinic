@@ -14,7 +14,7 @@ body {
   min-height: 100%;
   }
   .dash{
-  background-image: linear-gradient(to right, rgba(255,255,50,0), rgba(0,0,200,1));
+  background-image: linear-gradient(to right, rgb(193, 207, 221), rgba(164, 164, 243, 0));
   background-size: contain;
   background-attachment: fixed;
   min-width: 100%;
@@ -26,6 +26,12 @@ body {
     height: 93vh;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+  }
+  .date{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
   }
   
