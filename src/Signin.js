@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import "./input.css";
 import { useToast, Button } from "@chakra-ui/core";
-import { Route, Redirect } from "react-router-dom";
+import {withRouter, Redirect} from 'react-router-dom';
 
 const Signin = () => {
   const toast = useToast();
-  const [isLoading, setisLoading] = useState(false);
+  const [ isLoading, setisLoading] = useState(false);
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -56,7 +56,7 @@ const Signin = () => {
           title: "Sign in successful",
           description: `Book your appointment now`,
           status: "success",
-          duration: 10000,
+          duration: 5000,
           isClosable: true
         });
         setisLoading(
@@ -86,6 +86,11 @@ const Signin = () => {
       })
     );
   };
+  const redirect = ()=>{
+    if (proceed){
+      return <Redirect to = "/dashboard"/>
+    }
+  }
 
   return (
     <article className=" frame br3 ba border-blue b--black-10 mv4 w-100 w-50-m w-25-l mw8 shadow-6 center">
@@ -134,8 +139,10 @@ const Signin = () => {
           </div>
         </form>
       </main>
+      {redirect()}
     </article>
+  
   );
 };
 
-export default Signin;
+export default withRouter(Signin);

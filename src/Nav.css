@@ -17,7 +17,7 @@
     height: 100%;
     display: flex;
     align-items: center;
-    padding: 22px;
+    padding: 20px;
 }
 .navlink li:hover{
     background-color: #9ACDE0;

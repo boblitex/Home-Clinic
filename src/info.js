@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,withRouter } from "react-router-dom";
 
 const Info = () => {
   return (
@@ -26,4 +26,4 @@ const Info = () => {
   );
 };
 
-export default Info;
+export default withRouter(Info);

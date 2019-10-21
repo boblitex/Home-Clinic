@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Register.css";
-import { useToast, Button} from "@chakra-ui/core";
+import { useToast, Button } from "@chakra-ui/core";
+import {withRouter} from 'react-router-dom';
 
 const Register = () => {
   const toast = useToast();
@@ -30,7 +31,7 @@ const Register = () => {
         body: JSON.stringify(users)
       });
       let status = await response.json();
-      if  (await status.error) {
+      if (await status.error) {
         setValues({ ...values, error: status.error });
         toast({
           title: "An error occurred.",
@@ -52,7 +53,7 @@ const Register = () => {
           email: "",
           password: "",
           error: ""
-        })
+        });
         toast({
           title: "Account created.",
           description: `To continue, please Sign in`,
@@ -70,7 +71,7 @@ const Register = () => {
       console.error(error);
     }
   };
-  const { name, email, idno, password} = values;
+  const { name, email, idno, password } = values;
 
   const onRegister = () => {
     setisLoading(
@@ -104,7 +105,7 @@ const Register = () => {
               type="text"
               name="name"
               id="Name"
-              value ={name}
+              value={name}
             />
           </div>
           <div className="mt3">
@@ -118,7 +119,7 @@ const Register = () => {
               type="text"
               name="idnumber"
               id="id"
-              value ={idno}
+              value={idno}
             />
           </div>
           <div className="mt3">
@@ -132,7 +133,7 @@ const Register = () => {
               type="email"
               name="email-address"
               id="email-address"
-              value ={email}
+              value={email}
             />
           </div>
           <div className="mt3">
@@ -146,7 +147,7 @@ const Register = () => {
               type="password"
               name="password"
               id="password"
-              value ={password}
+              value={password}
             />
           </div>
         </fieldset>
@@ -172,4 +173,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default withRouter(Register);

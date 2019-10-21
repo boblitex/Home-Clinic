@@ -5,11 +5,32 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+  .wrapper{
   background-image: url('./Images/microscope.jpg');
   background-size: cover;
   background-attachment: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  }
+  .dash{
+  background-image: linear-gradient(to right, rgba(255,255,50,0), rgba(0,0,200,1));
+  background-size: contain;
+  background-attachment: fixed;
+  min-width: 100%;
+  min-height: 100vh;
+  color: orange;
+  
+  }
+  .home-body{
+    height: 93vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+ 
 
-}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

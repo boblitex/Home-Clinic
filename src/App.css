@@ -4,10 +4,5 @@
   box-sizing: border-box;
   font-family: sans-serif;
 }
-.home-body{
-  height: 93vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+
 
