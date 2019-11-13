@@ -3,9 +3,7 @@ import "./input.css";
 import { useToast, Button } from "@chakra-ui/core";
 import { withRouter, Redirect } from "react-router-dom";
 
-Button.defaultProps = {
-  isLoading: false
-}
+
 
 const Signin = () => {
   const toast = useToast();
