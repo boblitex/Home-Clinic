@@ -16,6 +16,7 @@ import {
 const Showdate = () => {
   const initialFocusRef = React.useRef();
   const date = localStorage.getItem("date");
+ 
   return (
     <Popover
       initialFocusRef={initialFocusRef}
@@ -23,7 +24,8 @@ const Showdate = () => {
       closeOnBlur={false}
     >
       <PopoverTrigger>
-        <Button>View Appointments</Button>
+        <Button         
+        >View Appointments</Button>
       </PopoverTrigger>
       <PopoverContent
         zIndex={4}

@@ -1,5 +1,5 @@
 import 'date-fns';
-import React from 'react';
+import React, {useEffect} from 'react';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -17,6 +17,10 @@ export default function MaterialUIPickers() {
   const handleDateChange = date => {
     setSelectedDate(date);
   };
+
+  useEffect(()=>{
+
+  }, [selectedDate])
 
   const handleClick =()=>{
       localStorage.setItem("date", selectedDate);

@@ -3,6 +3,10 @@ import "./input.css";
 import { useToast, Button } from "@chakra-ui/core";
 import { withRouter, Redirect } from "react-router-dom";
 
+Button.defaultProps = {
+  isLoading: false
+}
+
 const Signin = () => {
   const toast = useToast();
   const [isLoading, setisLoading] = useState(false);
@@ -19,7 +23,7 @@ const Signin = () => {
 
   useEffect(() => {}, [isLoading]);
 
-  
+
 
   const signInUser = async users => {
     try {
@@ -48,6 +52,11 @@ const Signin = () => {
         );
       } else if (await status.success) {
         authenticate(status, () => {
+          setisLoading(
+            (Button.defaultProps = {
+              isLoading: false
+            })
+          );
           setValues({
             ...values,
             email: "",
@@ -62,11 +71,7 @@ const Signin = () => {
             duration: 5000,
             isClosable: true
           });
-          setisLoading(
-            (Button.defaultProps = {
-              isLoading: false
-            })
-          );
+         
         });
       }
     } catch (error) {
@@ -92,7 +97,7 @@ const Signin = () => {
   };
   const redirect = () => {
     if (proceed) {
-      return <Redirect to="/dashboard" />;
+      return <Redirect to="/dashboard" />
     }
   };
   const authenticate = (data, cb) => {

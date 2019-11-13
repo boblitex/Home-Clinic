@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Register.css";
 import { useToast, Button } from "@chakra-ui/core";
-import {withRouter} from 'react-router-dom';
+import {withRouter, Redirect} from 'react-router-dom';
 
 const Register = () => {
   const toast = useToast();
@@ -11,7 +11,8 @@ const Register = () => {
     idno: "",
     email: "",
     password: "",
-    error: ""
+    error: "",
+    registered: false
   });
 
   const handleChange = name => event => {
@@ -46,13 +47,19 @@ const Register = () => {
           })
         );
       } else if (await status.success) {
+        setisLoading(
+          (Button.defaultProps = {
+            isLoading: false
+          })
+        );
         setValues({
           ...values,
           name: "",
           idno: "",
           email: "",
           password: "",
-          error: ""
+          error: "",
+          registered: true
         });
         toast({
           title: "Account created.",
@@ -61,17 +68,13 @@ const Register = () => {
           duration: 10000,
           isClosable: true
         });
-        setisLoading(
-          (Button.defaultProps = {
-            isLoading: false
-          })
-        );
+        
       }
     } catch (error) {
       console.error(error);
     }
   };
-  const { name, email, idno, password } = values;
+  const { name, email, idno, password, registered } = values;
 
   const onRegister = () => {
     setisLoading(
@@ -87,6 +90,11 @@ const Register = () => {
         isLoading: false
       })
     );
+  };
+  const redirect = () => {
+    if (registered) {
+      return <Redirect to="/signin" />
+    }
   };
 
   return (
@@ -169,6 +177,7 @@ const Register = () => {
           </a>
         </div>
       </form>
+      {redirect()}
     </div>
   );
 };
